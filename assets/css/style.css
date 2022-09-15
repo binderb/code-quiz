@@ -1,0 +1,72 @@
+:root {
+  --skyblue: #88d5fe;
+  --seafoam: #83ffcd;
+  --highlight: #83ffcd;
+  --blue: #009ee0;
+  --blue-highlight: #22BFF2;
+
+  --dark: #33323d;
+  --dark-mask: #33323d44;
+  --dark-mask-clear: #33323d00;
+  --button-glass: #FFFFFFAA;
+  --button-glass-highlight: #FFFFFFCC;
+  --text: #444;
+  --text-highlight: #666;
+}
+
+/*-----------------------------
+  General Styles
+  ----------------------------- */
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background: linear-gradient(var(--skyblue),var(--seafoam));
+}
+
+.lite-button {
+  display: inline-block;
+  background-color: var(--button-glass);
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text);
+  padding: 10px;
+  border-radius: 30px;
+  margin: 0 10px;
+}
+
+.lite-button:hover {
+  background-color: var(--button-glass-highlight);
+  color: var(--text-highlight);
+}
+
+
+/*-----------------------------
+  Header / Top Bar Styles
+  ----------------------------- */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  /* background-color: var(--dark); */
+}
+
+#time-bar-container {
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  border-radius: 10px;
+  flex: 1 0 0;
+  margin: 0 10px;
+  background-color: var(--blue);
+}
+
+#time-bar {
+  height: 10px;
+  border-radius: 10px;
+  margin: 0 10px;
+  background-color: white;
+  width: 90%;
+}
+
