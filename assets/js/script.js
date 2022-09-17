@@ -40,8 +40,29 @@ function start_quiz_ready_countdown () {
 }
 
 function start_quiz () {
+  display_question(0);
   quiz_timer = setInterval(update_timer,1000);
   shrink_time_bar();
+}
+
+function display_question (question_index) {
+  main_el.innerHTML = "";
+  var question_block = document.createElement('div');
+  question_block.setAttribute('id','question-block_'+question_index);
+  main_el.appendChild(question_block);
+  var question_prompt = document.createElement('div');
+  question_prompt.setAttribute('id','question-prompt');
+  question_prompt.textContent = window.quiz_questions[question_index].prompt;
+  question_block.appendChild(question_prompt);
+  for (var i=0; i<quiz_questions[question_index].answers.length; i++) {
+    var question_answer_i = document.createElement('button');
+    question_answer_i.setAttribute('class','question-answer');
+    question_answer_i.setAttribute('id','answer_'+i);
+    question_answer_i.textContent = window.quiz_questions[question_index].answers[i];
+    question_block.appendChild(question_answer_i);
+  }
+
+
 }
 
 function update_timer () {
@@ -78,7 +99,6 @@ function update_ready_countdown () {
 }
 
 function shrink_time_bar () {
-  // Need to calculate 
   var time_percentage = (time_left-1) / time_limit * 100;
   document.querySelector('#time-bar').setAttribute('style','width: '+time_percentage+'%;');
 }

@@ -176,3 +176,33 @@ main {
     color: var(--text);
   }
 }
+
+#question-prompt {
+  font-size: 18px;
+  font-weight: lighter;
+  text-align: left;
+  line-height: 1.25;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+.question-answer {
+  display: block;
+  background-color: var(--blue);
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  border-radius: 30px;
+  border-width: 0px;
+  cursor: pointer;
+  width: 100%;
+  min-width: 120px;
+  max-width: 600px;
+  margin-top:10px;
+}
+
+.question-answer:hover {
+  background-color: var(--blue-highlight);
+}
