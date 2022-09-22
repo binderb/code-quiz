@@ -12,6 +12,7 @@
   --red-incorrect: #fe4c4c;
   --button-glass: #FFFFFFAA;
   --button-glass-highlight: #FFFFFFCC;
+  --table-stripe: #FFFFFF33;
   --ui-outline: #eadeff;
   --text: #333;
   --text-highlight: #666;
@@ -148,7 +149,7 @@ header.ui-hidden {
 }
 
 /*-----------------------------
-  Main Styles
+  Main Styles 1: Info Screens
   ----------------------------- */
 
 main {
@@ -172,6 +173,10 @@ main {
 #start-quiz, #submit-score {
   margin-top: 20px;
 }
+
+/*-----------------------------
+  Main Styles 2: Quiz Screens
+  ----------------------------- */
 
 #ready-countdown {
   font-weight: 900;
@@ -256,4 +261,71 @@ main {
     transform: translateY(-30px);
     background-color: var(--green-correct);
   }
+}
+
+/*-----------------------------
+  Main Styles 3: Hiscore Screens
+  ----------------------------- */
+
+#initial-form {
+  margin-top: 20px;
+  color: var(--text);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+}
+
+#initial-form div {
+  font-weight: 900;
+  margin: 10px;
+}
+
+#initial-form input[type=text] {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#initial-validation-alert.ui-hidden {
+  display: none;
+}
+
+#hiscore-table {
+  table-layout: fixed;
+  width: 90%;
+  text-align: center;
+  border-collapse: collapse;
+  color: var(--text);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#hiscore-table thead {
+  font-weight: 900;
+}
+
+#hiscore-table thead tr th {
+  padding: 10px;
+}
+
+#hiscore-table tbody {
+  font-weight: 300;
+}
+
+#hiscore-table tbody tr td {
+  padding: 10px;
+}
+
+#hiscore-table tbody tr:nth-child(odd) {
+  background-color: var(--table-stripe);
+}
+
+#button-box {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+#return-to-start, #clear-hiscores {
+  margin-top: 20px;
 }
