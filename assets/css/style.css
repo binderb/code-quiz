@@ -7,6 +7,9 @@
   --blue: #009ee0;
   --blue-highlight: #11AFF1;
   --blue-clear: #009ee000;
+  --green-correct: #48a700;
+  --green-correct-highlight: #66e803;
+  --red-incorrect: #fe4c4c;
   --button-glass: #FFFFFFAA;
   --button-glass-highlight: #FFFFFFCC;
   --ui-outline: #eadeff;
@@ -130,6 +133,18 @@ header.ui-hidden {
   text-align: center;
   line-height: 70px;
   background-color: var(--blue);
+  animation-name: none;
+  animation-iteration-count: 1;
+  animation-duration: 0.4s;
+}
+
+@keyframes incorrect-pulse {
+  0% {
+    background-color: var(--red-incorrect);
+  }
+  100% {
+    background-color: var(--blue);
+  }
 }
 
 /*-----------------------------
@@ -144,7 +159,7 @@ main {
   padding: 10px 0;
 }
 
-#instructions {
+#info {
   font-size: 18px;
   font-weight: lighter;
   text-align: center;
@@ -154,7 +169,7 @@ main {
   margin-top: 20px;
 }
 
-#start-quiz {
+#start-quiz, #submit-score {
   margin-top: 20px;
 }
 
@@ -177,13 +192,17 @@ main {
   }
 }
 
+#question-block {
+  width: 90%;
+  min-width: 120px;
+  max-width: 600px;
+}
+
 #question-prompt {
   font-size: 18px;
   font-weight: lighter;
   text-align: left;
   line-height: 1.25;
-  width: 90%;
-  max-width: 600px;
   margin: 20px 0;
 }
 
@@ -205,4 +224,36 @@ main {
 
 .question-answer:hover {
   background-color: var(--blue-highlight);
+}
+
+.correct-card {
+  position: absolute;
+  z-index: 3;
+  left: 30%;
+  color: white;
+  background-color: var(--green-correct);
+  font-size: 24px;
+  font-weight: 900;
+  padding: 20px;
+  width: 40%;
+  text-align: center;
+  border-radius: 20px;
+  animation-name: fade-up;
+  animation-timing-function: linear;
+  animation-duration: 0.4s;
+  opacity: 1;
+  transform: translateY(-30px);
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+    background-color: var(--green-correct-highlight);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+    background-color: var(--green-correct);
+  }
 }
