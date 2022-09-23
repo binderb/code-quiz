@@ -118,11 +118,9 @@ header.ui-hidden {
 
 #time-left {
   z-index: 2;
-  /* position: absolute; */
   left: -3px;
   top: -30px;
   margin: 10px;
-  /* font-family: monospace; */
   color: white;
   font-size: 24px;
   font-weight: bold;
@@ -130,7 +128,6 @@ header.ui-hidden {
   width: 70px;
   height: 70px;
   border-radius: 70px;
-  /* box-shadow: 0px 0px 0px 10px var(--dusksunset); */
   text-align: center;
   line-height: 70px;
   background-color: var(--blue);
@@ -318,6 +315,28 @@ main {
 
 #hiscore-table tbody tr:nth-child(odd) {
   background-color: var(--table-stripe);
+}
+
+#hiscore-table tbody tr#current-score {
+  background-color: var(--blue);
+  animation-name: my-score-pulse;
+  animation-iteration-count: infinite;
+  animation-duration: 1.0s;
+  animation-timing-function: linear;
+  color: white;
+  font-weight: 900;
+}
+
+@keyframes my-score-pulse {
+  0% {
+    background-color: var(--blue);
+  }
+  50% {
+    background-color: var(--blue-highlight);
+  }
+  100% {
+    background-color: var(--blue);
+  }
 }
 
 #button-box {

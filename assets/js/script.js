@@ -12,7 +12,7 @@ var quiz_timer;
 // into the page when it's loaded.
 function initialize_ui () {
   document.querySelector('#header-restart').addEventListener('click', display_start_screen);
-  document.querySelector('#header-hiscores').addEventListener('click', display_hiscore_table);
+  document.querySelector('#header-hiscores').addEventListener('click', function () {display_hiscore_table(false);});
 }
 
 // This function presents the first screen that the user will
@@ -217,6 +217,9 @@ function display_hiscore_entry () {
   initial_form_field_el.focus();
 }
 
+// If the user submits their score from the entry screen,
+// this function will actually add the score to LocalStorage,
+// and then display the score table.
 function add_highscore (e) {
   e.preventDefault();
   if (document.querySelector('#initial-field').value.trim() === '') {
@@ -233,11 +236,16 @@ function add_highscore (e) {
       hiscores.push(new_score_item);
     } else hiscores = [new_score_item];
     localStorage.setItem("hiscores",JSON.stringify(hiscores));
-    display_hiscore_table();
+    display_hiscore_table(true);
   }
 }
 
-function display_hiscore_table () {
+// This function displays the high score table. The user
+// can access this screen either from the quiz session (which
+// will end their session) or at the end of a session after
+// submitting their score.
+function display_hiscore_table (highlight) {
+  console.log("hello?");
   main_el.innerHTML = '';
   // If the user visits the table from within a quiz session,
   // their quiz timer needs to be cleared and the header hidden.
@@ -251,6 +259,12 @@ function display_hiscore_table () {
     // If there is data in the 'hiscores' item in LocalStorage,
     // use it to generate a table of high scores.
     var hiscores = JSON.parse(localStorage.getItem('hiscores'));
+    // If the user visits this screen after submitting their own
+    // score, we should highlight their score. We will do this
+    // by saving the criteria from their score, and identifying
+    // the first occurrence of it when generating the table.
+    var highlighted_score_data;
+    if (highlight) highlighted_score_data = hiscores[hiscores.length-1];
     // Sort the high scores first by number correct,
     // and then by the amount of time left.
     hiscores.sort(function (a,b) {
@@ -274,7 +288,12 @@ function display_hiscore_table () {
     const score_tbody = document.createElement('tbody');
     var tbody_content = '';
     for (var i=0; i < hiscores.length; i++) {
-      tbody_content += '<tr>';
+      if (highlight && hiscores[i].initials === highlighted_score_data.initials && hiscores[i].correct === highlighted_score_data.correct && hiscores[i].time === highlighted_score_data.time) {
+        tbody_content += '<tr id="current-score">';
+        highlight = false;
+      } else {
+        tbody_content += '<tr>';
+      }
       tbody_content += '<td>' + (i+1) + '</td>';
       tbody_content += '<td>' + hiscores[i].initials + '</td>';
       tbody_content += '<td>' + hiscores[i].correct + '</td>';
@@ -304,11 +323,13 @@ function display_hiscore_table () {
   return_button_el.addEventListener('click',display_start_screen);
 }
 
+// This function removes the LocalStorage item
+// associated with the high scores.
 function clear_hiscores () {
   if (localStorage.getItem('hiscores')) {
     localStorage.removeItem('hiscores');
   }
-  display_hiscore_table();
+  display_hiscore_table(false);
 }
 
 
