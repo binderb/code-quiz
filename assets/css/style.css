@@ -81,6 +81,7 @@ h1 {
   ----------------------------- */
 
 header {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -95,7 +96,6 @@ header.ui-hidden {
   position: relative;
   display: flex;
   justify-content: flex-start;
-  /* box-shadow: 0px 0px 0px 3px var(--dusksunset); */
   height: 10px;
   border-radius: 10px;
   flex: 1 0 0;
@@ -118,8 +118,6 @@ header.ui-hidden {
 
 #time-left {
   z-index: 2;
-  left: -3px;
-  top: -30px;
   margin: 10px;
   color: white;
   font-size: 24px;
@@ -134,6 +132,10 @@ header.ui-hidden {
   animation-name: none;
   animation-iteration-count: 1;
   animation-duration: 0.4s;
+}
+
+#time-left::before {
+  display: none;
 }
 
 @keyframes incorrect-pulse {
@@ -176,6 +178,8 @@ main {
   ----------------------------- */
 
 #ready-countdown {
+  position: relative;
+  top: 100px;
   font-weight: 900;
   color: var(--text);
   font-size: 48px;
@@ -347,4 +351,31 @@ main {
 
 #return-to-start, #clear-hiscores {
   margin-top: 20px;
+}
+
+/*-----------------------------
+  Media Queries
+  ----------------------------- */
+
+@media screen and (max-width: 450px) {
+
+  #time-left {
+    position: absolute;
+    left: calc(50% - 35px);
+    top: 20px;
+    margin: -10px 0px 0px 0px;
+    background-color: transparent;
+
+  }
+
+  #time-bar-container {
+    margin: -15px 0px 0px 0px;
+  }
+
+  @keyframes incorrect-pulse {
+
+  }
+
+  
+
 }

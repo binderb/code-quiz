@@ -7,6 +7,9 @@ var ready_countdown_left;
 var time_left;
 var correct_count = 0;
 var quiz_timer;
+var correct_audio = new Audio('./assets/audio/correct.mp3');
+var incorrect_audio = new Audio('./assets/audio/incorrect.mp3');
+
 
 // Add event listeners to the buttons that are hard-coded
 // into the page when it's loaded.
@@ -125,6 +128,7 @@ function check_answer () {
 // Helper function to handle the visual elements
 // indicating a correct answer was chosen.
 function display_correct () {
+  correct_audio.play();
   const correct_card = document.createElement('div');
   correct_card.setAttribute('class','correct-card');
   correct_card.textContent = "Correct!";
@@ -134,9 +138,10 @@ function display_correct () {
   }, 300);
 }
 
-// Helper function to handle the visual elements
+// Helper function to handle the audio/visual elements
 // indicating an incorrect answer was chosen.
 function display_incorrect () {
+  incorrect_audio.play();
   document.querySelector('#time-bar').style.transitionDuration = '0s';
   document.querySelector('#time-left').setAttribute('style','animation-name: none');
   shrink_time_bar();
